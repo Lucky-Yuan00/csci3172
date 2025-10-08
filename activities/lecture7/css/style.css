@@ -1,0 +1,27 @@
+/* For information on how to implement Bootstrap and how to apply your own custom CSS, visit: https://getbootstrap.com/docs/5.3/getting-started/introduction/  */
+/* Custom CSS */
+body {
+	background-color: #f5f6fa;
+}
+
+body .container {
+	background-color: #fff;
+	margin-top: 5em;
+	border: solid #dcdde1 thin;
+	padding: 2.5em;
+}
+#addCreatureForm label, #addCreatureForm button {
+	font-size: 1.2em;
+	margin-top: 1em;
+}
+#addCreatureForm button {
+	margin-bottom: 1em;
+}
+#addCreatureForm input {
+	padding: 1.5em;
+}
+ul li {
+	padding: .6em;
+	font-size: 1em;
+	font-style: italic;
+}
