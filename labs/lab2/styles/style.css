@@ -1,0 +1,248 @@
+/* ===========================
+   Base / Reset / Theme (soft mint)
+   =========================== */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+:root{
+  --bg: #f7fbf9;
+  --bg-blob1: #e6fff3;
+  --bg-blob2: #e8f7ff;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --muted: #5b6b7a;
+  --text: #0f172a;
+  --primary: #1aa37a;
+  --primary-strong: #0f8f6a;
+  --chip: #0a6b52;
+  --chip-bg: #e7fbf4;
+  --warn-bg: #fef3c7;
+  --warn-fg: #92400e;
+}
+body{
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: var(--text);
+  background:
+    radial-gradient(900px 360px at -10% -10%, var(--bg-blob1) 0, transparent 60%),
+    radial-gradient(800px 300px at 110% -10%, var(--bg-blob2) 0, transparent 55%),
+    var(--bg);
+}
+
+/* Containers */
+.container{ width: min(1180px, 94vw); margin: 0 auto; padding: 1rem; }
+
+/* Focus ring (global) */
+:focus-visible{ outline: 3px solid #9ad7c4; outline-offset: 2px; border-radius: 8px; }
+
+/* ===========================
+   Hero + Chips + Metrics
+   =========================== */
+/* Smooth hide/show for sticky header */
+.hero { 
+  transition: transform .28s ease; 
+  will-change: transform;
+}
+
+/* Move header out of view without changing layout flow */
+.hero--hidden{
+  transform: translateY(calc(-100% - 8px));
+}
+
+/* Soft shadow when page is scrolled */
+.hero--shadow{
+  box-shadow: 0 6px 18px rgba(2,8,20,.06);
+}
+
+
+.hero-inner{ padding-top: .8rem; padding-bottom: .2rem; }
+header h1{ margin: 0 0 .25rem 0; letter-spacing: .2px; }
+.subtitle{ margin: 0; color: #4e5f6d; }
+
+/* Chips */
+.chips-wrap{ padding-top: .25rem; padding-bottom: .6rem; }
+.chips{
+  display: grid; grid-auto-flow: column; gap: .5rem;
+  overflow-x: auto; padding-bottom: .2rem;
+  scroll-snap-type: x mandatory;
+}
+.chip{
+  scroll-snap-align: start; white-space: nowrap;
+  border: 1px solid #d7efe3; background: #fff;
+  padding: .45rem .75rem; border-radius: 999px; font-size: .9rem; cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+}
+.chip:hover{ background: #f1fffb; }
+.chip.active{ background: var(--chip); border-color: transparent; color: #fff; }
+
+/* Metrics */
+.metrics{ display: grid; grid-auto-flow: column; gap: .75rem; overflow-x: auto; padding-bottom: .5rem; }
+.metric{
+  min-width: 170px; background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: .65rem .85rem; box-shadow: 0 4px 18px rgba(2,8,20,.04);
+}
+.metric-label{ font-size: .8rem; color: var(--muted); }
+.metric-value{ font-size: 1.15rem; font-weight: 700; }
+
+/* ===========================
+   Forms / buttons (base)
+   =========================== */
+.grid-2{ display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+label{ display: flex; flex-direction: column; gap: .35rem; }
+input, textarea, select{
+  width: 100%;
+  padding: .7rem .8rem;
+  border: 1px solid #cfe6dc;
+  border-radius: 12px;
+  background: #fff;
+}
+input, textarea{ box-shadow: inset 0 1px 0 rgba(0,0,0,.02); }
+textarea{ min-height: 110px; resize: vertical; }
+.module.flat input, .module.flat textarea, .module.flat select{ max-width: 100%; }
+
+.btn{
+  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+  padding: .65rem 1rem; border-radius: 999px; border: 1px solid #cfe6dc;
+  background: #ffffff; cursor: pointer;
+}
+.btn:hover{ background: #f2fffb; }
+.btn.primary{ background: var(--primary); border-color: var(--primary-strong); color: white; }
+.btn.primary:hover{ background: var(--primary-strong); }
+.search-row, .total-row, .discount-row{ display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; }
+.stack{ display: flex; flex-direction: column; gap: .7rem; }
+
+/* ===========================
+   Add panel collapse
+   =========================== */
+.accordion{
+  width: 100%; text-align: left; background: #f6fffb; border: 1px dashed #bde6d7;
+  padding: .6rem .9rem; border-radius: 12px; cursor: pointer; margin-bottom: .8rem;
+}
+.accordion:hover{ background: #effff9; }
+.accordion-body{
+  max-height: 0; overflow: hidden; padding: 0; opacity: 0;
+  transition: max-height .35s ease, padding .25s ease, opacity .25s ease;
+}
+/* prevent outline clipping while expanded */
+.accordion[aria-expanded="true"] + .accordion-body{
+  max-height: 800px; padding: .7rem 0 0 0; opacity: 1; overflow: visible !important;
+}
+
+/* Compact Add form sizing + room for focus outline */
+.module.flat > #add-form{ max-width: 980px; margin-inline: auto; padding-inline: .25rem; }
+#add-form .grid-2{ gap: .5rem; }
+#add-form label > span{ font-size: .95rem; font-weight: 600; letter-spacing: .1px; color: #0f2a1f; }
+#add-form input, #add-form select{
+  padding: .45rem .6rem !important;
+  height: 40px !important;
+  border-radius: 8px !important;
+  font-size: .92rem !important;
+  line-height: 1.2;
+}
+#add-form textarea{
+  padding: .5rem .6rem !important;
+  min-height: 90px !important;
+  border-radius: 8px !important;
+  font-size: .92rem !important;
+  line-height: 1.35;
+}
+#add-form input:focus-visible, #add-form textarea:focus-visible{
+  outline-offset: 4px;
+}
+.page-stack .module.flat form#add-form textarea{ margin-bottom: .4rem !important; }
+.page-stack .module.flat form#add-form .btn.primary{
+  margin-top: .35rem !important; align-self: flex-start;
+}
+
+/* ===========================
+   Spotlight browse
+   =========================== */
+.spotlight-card{
+  width: min(780px, 100%); margin: 0 auto; background: var(--card);
+  border: 1px solid var(--border); border-radius: 16px; padding: 1rem;
+  box-shadow: 0 8px 24px rgba(2,8,20,.04);
+}
+
+/* ===========================
+   Modules stack
+   =========================== */
+.page-stack{ display: flex; flex-direction: column; gap: 1.35rem; margin-top: .9rem; }
+.module.flat{ background: transparent; border: 0; box-shadow: none; padding: 0; }
+.module.flat h2{ margin: 0 0 .65rem 0; font-size: 1.1rem; }
+
+/* ===========================
+   Segmented control
+   =========================== */
+.segmented{
+  display: inline-flex; gap: .25rem; padding: .25rem;
+  border: 1px solid var(--border); border-radius: 999px; background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,.03);
+}
+.seg{ border: 0; background: transparent; padding: .45rem .9rem; border-radius: 999px; cursor: pointer; color: #0f2a1f; }
+.seg:hover{ background: #f1fffb; }
+.seg.active{ background: var(--chip); color: #fff; }
+
+/* ===========================
+   Messages
+   =========================== */
+.messages{ margin: .6rem 0 1rem 0; min-height: 1.5rem; }
+.msg{ padding: .55rem .8rem; border-radius: 10px; display: inline-block; margin-right: .6rem; }
+.msg.info{ background: #dff8ff; color: #0c4a6e; }
+.msg.success{ background: #dcfce7; color: #14532d; }
+.msg.error{ background: #fee2e2; color: #7f1d1d; }
+
+/* ===========================
+   Low stock carousel
+   =========================== */
+.carousel{
+  display: grid; grid-auto-flow: column; gap: .8rem;
+  overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: .2rem;
+}
+.mini-card{
+  scroll-snap-align: start; min-width: 220px; background: var(--card);
+  border: 1px solid var(--border); border-radius: 14px; padding: .85rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,.05);
+}
+.mini-title{ margin: 0 0 .25rem 0; font-weight: 700; }
+.mini-meta{ font-size: .9rem; color: #475569; }
+
+/* ===========================
+   Inventory
+   =========================== */
+.inventory{
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem; margin-bottom: 2rem;
+}
+.item-card{
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1rem;
+  display: flex; flex-direction: column; gap: .55rem; transition: transform .12s ease, box-shadow .12s ease; position: relative;
+}
+.item-card:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.06); }
+.item-card h3{ margin: 0; font-size: 1.08rem; }
+.item-meta{ font-size: .9rem; color: #475569; }
+.item-actions{ display: flex; gap: .6rem; margin-top: .25rem; }
+.badge{ display: inline-block; padding: .18rem .52rem; border-radius: 999px; background: var(--chip-bg); color: var(--chip); font-size: .8rem; }
+.price{ font-weight: 620; }
+.group-title{ grid-column: 1 / -1; font-size: 1rem; color: #123c2f; margin-top: .5rem; margin-bottom: -.5rem; }
+.dup-flag{
+  position: absolute; top: .6rem; right: .6rem;
+  background: var(--warn-bg); color: var(--warn-fg);
+  font-size: .75rem; padding: .15rem .45rem; border-radius: 999px; border: 1px solid #f59e0b;
+}
+
+/* List layout */
+.inventory.list{ grid-template-columns: 1fr; }
+.inventory.list .item-card{ flex-direction: row; align-items: flex-start; gap: 1rem; }
+.inventory.list .item-card h3{ min-width: 220px; }
+
+/* Footer */
+footer{ color: var(--muted); padding-bottom: 2rem; }
+
+/* Utility */
+.hidden{ display: none !important; }
+
+/* ===========================
+   Responsive
+   =========================== */
+@media (max-width: 760px){
+  .grid-2{ grid-template-columns: 1fr; }
+}

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Magic Shop Inventory</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <!-- Sticky hero (will auto-hide on scroll via JS/CSS) -->
+  <div id="hero" class="hero" data-autohide="true">
+    <header class="container hero-inner">
+      <h1>Magic Shop Inventory</h1>
+    </header>
+
+    <!-- Scrollable type chips -->
+    <section class="container chips-wrap" aria-label="Quick type filters">
+      <div id="chips-row" class="chips"></div>
+    </section>
+
+    <!-- Auto-updating metrics -->
+    <section class="container metrics" aria-label="Inventory metrics">
+      <div class="metric">
+        <div class="metric-label">Items</div>
+        <div id="m-items" class="metric-value">0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Total Qty</div>
+        <div id="m-qty" class="metric-value">0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Total Value</div>
+        <div id="m-value" class="metric-value">0</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Spotlight: Browse higher and centered -->
+  <section class="container spotlight" aria-label="Browse">
+    <div class="spotlight-card">
+      <h2>Browse</h2>
+      <div class="stack">
+        <div class="search-row">
+          <input type="text" id="search-input" placeholder="Search by name or type...">
+          <select id="type-filter" title="Filter by type">
+            <option value="">All types</option>
+          </select>
+          <button id="clear-search" class="btn">Clear</button>
+        </div>
+        <div class="search-row">
+          <select id="sort-select" title="Sort options">
+            <option value="default">Sort: Default</option>
+            <option value="name-asc">Name ↑</option>
+            <option value="price-asc">Price ↑</option>
+            <option value="price-desc">Price ↓</option>
+            <option value="qty-asc">Quantity ↑</option>
+            <option value="qty-desc">Quantity ↓</option>
+          </select>
+          <button id="layout-toggle" class="btn" aria-pressed="false" title="Toggle layout">Layout: Grid</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page stack: each module its own row -->
+  <section class="container page-stack" aria-label="Modules">
+    <!-- Add Item -->
+    <div class="module flat">
+      <button id="add-toggle" class="accordion" aria-expanded="false">+ Add Item</button>
+      <form id="add-form" class="accordion-body" autocomplete="off">
+        <div class="grid-2">
+          <label>
+            <span>Name</span>
+            <input type="text" id="name" placeholder="e.g., Healing Potion" required>
+          </label>
+          <label>
+            <span>Type</span>
+            <input type="text" id="type" placeholder="e.g., potion / wand / scroll" required>
+          </label>
+        </div>
+        <div class="grid-2">
+          <label>
+            <span>Price</span>
+            <input type="number" id="price" step="0.01" min="0" placeholder="e.g., 12.50" required>
+          </label>
+          <label>
+            <span>Quantity</span>
+            <input type="number" id="quantity" min="0" step="1" placeholder="e.g., 5" required>
+          </label>
+        </div>
+        <label>
+          <span>Description</span>
+          <textarea id="description" placeholder="Short description (optional)"></textarea>
+        </label>
+        <button type="submit" class="btn primary">Add Item</button>
+      </form>
+    </div>
+
+    <!-- Total -->
+    <div class="module flat">
+      <h2>Total</h2>
+      <div class="total-row">
+        <button id="calc-total-btn" class="btn">Calculate</button>
+        <output id="total-value">0</output>
+      </div>
+    </div>
+
+    <!-- Extras & Tools -->
+    <div class="module flat">
+      <h2>Extras &amp; Tools</h2>
+      <div class="stack">
+        <!-- Segmented control instead of square checkbox -->
+        <div class="segmented" role="tablist" aria-label="View mode">
+          <button id="view-cards" class="seg active" data-mode="cards" role="tab" aria-selected="true">Cards</button>
+          <button id="view-grouped" class="seg" data-mode="grouped" role="tab" aria-selected="false">Grouped (Map)</button>
+        </div>
+
+        <div class="discount-row">
+          <input type="number" id="discount-input" min="0" max="90" step="1" value="10">
+          <button id="apply-discount-btn" class="btn">Apply Discount (%)</button>
+        </div>
+
+        <div class="search-row">
+          <button id="reset-btn" class="btn">Reset Data</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Low stock slider (will hide when searching/filtering via JS) -->
+  <section id="low-stock" class="container" aria-label="Low stock" data-hide-when-search="true">
+    <h2>Low Stock (≤ 3)</h2>
+    <div id="featured-row" class="carousel"></div>
+  </section>
+
+  <!-- Message area -->
+  <div class="container">
+    <div id="messages" class="messages" aria-live="polite"></div>
+  </div>
+
+  <!-- Inventory -->
+  <main class="container">
+    <h2>Inventory</h2>
+    <div id="inventory-list" class="inventory"></div>
+  </main>
+
+  <footer class="container">
+    <small>&copy; 2025 Magic Shop — Lab 2</small>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
