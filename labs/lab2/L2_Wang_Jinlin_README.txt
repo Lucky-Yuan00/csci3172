@@ -27,7 +27,7 @@ csci3172/
       │  └─ style.css
       ├─ js/
       │  └─ script.js
-      └─ README.txt
+      └─ L2_Wang_Jinlin_README.txt
 
 How to Run
 - Open index.html in any modern browser.
