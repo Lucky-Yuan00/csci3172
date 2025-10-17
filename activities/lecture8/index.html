@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>L8 Calculator Activity</title>
+  <meta name="description" content="An example for CSCI 3172">
+  <meta name="author" content="Gabriella Mosquera">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+ <div id="wrapper">
+  <header>
+    <h1><a href="#"><img src="images/Dal_Logo.png" alt="Dalhousie University Logo"></a></h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="col_1">
+    <h2 id="greeting"></h2>
+    <h3>Facebook helps you connect and share with the people in your life.</h3>
+  </section>
+
+  <section id="col_2">
+    <h2>Sign Up</h2>
+    <p>It's free and always will be.</p>
+
+    <!-- Prevent page refresh; buttons call calculate(op) in script.js -->
+    <form action="#" method="post" onsubmit="return false;">
+      <p>
+        <input type="text" placeholder="First Name" name="first_name" id="firstName">
+        <input type="text" placeholder="Last Name"  name="last_name"  id="lastName">
+      </p>
+
+      <p>Please enter two numbers to calculate:</p>
+      <p>
+        <input type="text" placeholder="Enter a number" name="number1" id="number1">
+        <input type="text" placeholder="Enter a number" name="number2" id="number2">
+      </p>
+
+      <div class="btn-group">
+        <input type="button" value="Add"      onclick="calculate('add')">
+        <input type="button" value="Subtract" onclick="calculate('sub')">
+        <input type="button" value="Multiply" onclick="calculate('mul')">
+        <input type="button" value="Divide"   onclick="calculate('div')">
+      </div>
+
+      <p id="result" aria-live="polite"></p>
+    </form>
+
+    <hr>
+    <p class="create"><strong><a href="#">Create a Page</a> for a celebrity, band or business.</strong></p>
+  </section>
+ </div>
+
+ <script src="js/script.js"></script>
+</body>
+</html>
