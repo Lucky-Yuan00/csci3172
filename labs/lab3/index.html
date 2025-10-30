@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lab 3 — Register</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+  <!-- avoid favicon 404 -->
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <!-- Decorative background -->
+  <div class="bg-orbs" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span class="brand-text">Register · JS Lab 3</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card card--glass">
+      <h1 class="card-title">User Registration</h1>
+
+      <form id="registerForm" novalidate aria-describedby="formMessage">
+        <!-- Email -->
+        <div class="field">
+          <label class="floating" for="regEmail">Email</label>
+          <div class="input-wrap">
+            <input id="regEmail" name="email" type="email" autocomplete="email" />
+            <span class="input-icon" aria-hidden="true">📧</span>
+          </div>
+          <p class="hint">Use a traditional email format. TLD length: 2–8.</p>
+          <p class="error" data-for="regEmail" aria-live="polite"></p>
+        </div>
+
+        <!-- Username -->
+        <div class="field">
+          <label class="floating" for="regUsername">Username</label>
+          <div class="input-wrap">
+            <input id="regUsername" name="username" type="text" autocomplete="username" />
+            <span class="input-icon" aria-hidden="true">👤</span>
+          </div>
+          <p class="hint">Must not start with a digit; no spaces or special chars.</p>
+          <p class="error" data-for="regUsername" aria-live="polite"></p>
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+          <label class="floating" for="regPassword">Password</label>
+          <div class="input-wrap">
+            <input id="regPassword" name="password" type="password" autocomplete="new-password" />
+            <button class="ghost-btn" type="button" id="togglePass" aria-label="Show password">👁️</button>
+          </div>
+          <p class="hint">≥ 12 chars and include 1 digit, 1 upper, 1 lower, 1 symbol.</p>
+          <div class="meter" aria-hidden="true">
+            <div class="meter-bar" id="passStrength" style="--strength:0"></div>
+          </div>
+          <p class="error" data-for="regPassword" aria-live="polite"></p>
+          <p class="caps" id="capsReg" aria-live="polite"></p>
+        </div>
+
+        <!-- Confirm -->
+        <div class="field">
+          <label class="floating" for="regConfirm">Confirm Password</label>
+          <div class="input-wrap">
+            <input id="regConfirm" name="confirm" type="password" autocomplete="new-password" />
+            <button class="ghost-btn" type="button" id="toggleConfirm" aria-label="Show confirm password">👁️</button>
+          </div>
+          <p class="error" data-for="regConfirm" aria-live="polite"></p>
+        </div>
+
+        <button id="btnRegister" type="submit" class="btn-primary">Create account</button>
+        <p id="formMessage" class="form-message" aria-live="polite"></p>
+      </form>
+
+      <p class="alt-link">Already have an account? <a href="./login.html">Go to Login</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© Jinlin • CSCI 3172</span>
+  </footer>
+
+  <!-- ES module entry for the Register page -->
+  <script type="module" src="./js/main-register.js"></script>
+
+  <!-- Lightweight UI enhancements; no changes to business logic -->
+  <script type="module">
+    // Toggle show/hide password
+    const toggle = (btnId, inputId) => {
+      const btn = document.getElementById(btnId);
+      const ipt = document.getElementById(inputId);
+      if (!btn || !ipt) return;
+      btn.addEventListener('click', () => {
+        ipt.type = ipt.type === 'password' ? 'text' : 'password';
+        btn.classList.toggle('is-on');
+      });
+    };
+    toggle('togglePass', 'regPassword');
+    toggle('toggleConfirm', 'regConfirm');
+
+    // CapsLock indicator
+    const capsTip = document.getElementById('capsReg');
+    const watchCaps = (el) => el && el.addEventListener('keyup', e => {
+      const on = e.getModifierState && e.getModifierState('CapsLock');
+      capsTip.textContent = on ? 'CapsLock is ON' : '';
+      capsTip.classList.toggle('caps--on', !!on);
+    });
+    watchCaps(document.getElementById('regPassword'));
+    watchCaps(document.getElementById('regConfirm'));
+
+    // Password strength meter (visual only; not part of validation)
+    const pass = document.getElementById('regPassword');
+    const bar  = document.getElementById('passStrength');
+    const score = (s) => {
+      let pts = 0;
+      if (!s) return 0;
+      if (s.length >= 12) pts++;
+      if (/[0-9]/.test(s)) pts++;
+      if (/[A-Z]/.test(s)) pts++;
+      if (/[a-z]/.test(s)) pts++;
+      if (/[^A-Za-z0-9]/.test(s)) pts++;
+      return Math.min(4, pts); // 0–4
+    };
+    pass && pass.addEventListener('input', () => {
+      const n = score(pass.value);
+      bar.style.setProperty('--strength', n);
+      bar.setAttribute('data-score', n);
+    });
+  </script>
+</body>
+</html>

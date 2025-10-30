@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lab 3 — Login</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+  <!-- avoid favicon 404 -->
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <!-- Decorative background -->
+  <div class="bg-orbs" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span class="brand-text">Login · JS Lab 3</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card card--glass">
+      <h1 class="card-title">Login</h1>
+
+      <form id="loginForm" novalidate aria-describedby="loginMessage">
+        <div class="field">
+          <label class="floating" for="loginUsername">Username</label>
+          <div class="input-wrap">
+            <input id="loginUsername" name="username" type="text" autocomplete="username" />
+            <span class="input-icon" aria-hidden="true">👤</span>
+          </div>
+          <p class="error" data-for="loginUsername" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label class="floating" for="loginPassword">Password</label>
+          <div class="input-wrap">
+            <input id="loginPassword" name="password" type="password" autocomplete="current-password" />
+            <button class="ghost-btn" type="button" id="toggleLoginPass" aria-label="Show password">👁️</button>
+          </div>
+          <p class="error" data-for="loginPassword" aria-live="polite"></p>
+          <p class="caps" id="capsLogin" aria-live="polite"></p>
+        </div>
+
+        <button id="btnLogin" type="submit" class="btn-primary">Sign in</button>
+        <p id="loginMessage" class="form-message" aria-live="polite"></p>
+      </form>
+
+      <p class="alt-link">Need an account? <a href="./index.html">Create one</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© Jinlin • CSCI 3172</span>
+  </footer>
+
+  <!-- ES module entry for the Login page -->
+  <script type="module" src="./js/main-login.js"></script>
+
+  <!-- Lightweight UI enhancements; no changes to existing logic -->
+  <script type="module">
+    const t = document.getElementById('toggleLoginPass');
+    const p = document.getElementById('loginPassword');
+    if (t && p) t.addEventListener('click', () => {
+      p.type = p.type === 'password' ? 'text' : 'password';
+      t.classList.toggle('is-on');
+    });
+
+    const capsTip = document.getElementById('capsLogin');
+    p && p.addEventListener('keyup', e => {
+      const on = e.getModifierState && e.getModifierState('CapsLock');
+      capsTip.textContent = on ? 'CapsLock is ON' : '';
+      capsTip.classList.toggle('caps--on', !!on);
+    });
+  </script>
+</body>
+</html>
