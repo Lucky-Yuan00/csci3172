@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chinese Recipe Finder</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>window.__NETLIFY_DEV__ = true;</script>
+</head>
+<body>
+  <a class="skip-link" href="#grid">Skip to results</a>
+
+  <header class="page-header">
+    <h1 class="title">Chinese Recipe Finder</h1>
+  </header>
+
+  <section class="about">
+    <h2>About - Eight Great Cuisines</h2>
+    <p>
+      This app explores Chinese culinary traditions through the lens of the “Eight Great Cuisines” (Ba Cai):
+      Shandong (Lu), Cantonese (Yue), Fujian (Min), Jiangsu (Su), Zhejiang (Zhe), Hunan (Xiang), Anhui (Hui),
+      and Sichuan (Chuan). Each cuisine reflects regional ingredients, climate, and craft—from the fresh, delicate
+      notes of Jiangsu and Zhejiang, to the smoky heat of Hunan and the numbing “mala” of Sichuan; from Shandong's
+      masterful braises to Cantonese dim sum and gentle steaming.
+    </p>
+    <p>
+      Our primary focus is Chinese cuisine. To broaden discovery, search results may occasionally include a small number
+      of non-Chinese recipes as well. We're continuously adding more dishes and improving coverage.
+    </p>
+  </section>
+
+  <div class="controls">
+    <label for="q" class="sr-only">Ingredients (comma-separated, up to 3)</label>
+    <input id="q" class="input" placeholder="e.g., tofu" autocomplete="off" />
+
+    <label for="cuisineSelect" class="sr-only">Cuisine</label>
+    <select id="cuisineSelect" class="select"></select>
+
+    <label for="dietSelect" class="sr-only">Dietary preference</label>
+    <select id="dietSelect" class="select"></select>
+
+    <button id="btnSearch" class="btn primary" aria-controls="grid">Search</button>
+    <button id="btnTop5" class="btn ghost" aria-controls="modalTop5">Top 5</button>
+  </div>
+
+  <p class="hint">Focus on Chinese dishes. Enter 1-3 ingredients (optional cuisine and diet filters).</p>
+
+  <p id="count" class="count" role="status" aria-live="polite" aria-atomic="true">Found 0 result(s).</p>
+
+  <p id="formError" class="error" role="alert" hidden></p>
+
+  <main id="grid" class="grid" aria-live="polite" tabindex="-1"></main>
+
+  <div
+    id="modalTop5"
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="top5Title"
+    tabindex="-1"
+    aria-hidden="true"
+  >
+    <div class="modal__backdrop" data-close="top5"></div>
+    <div class="modal__panel">
+      <button class="modal__close" data-close="top5" aria-label="Close">x</button>
+      <h3 id="top5Title" class="modal__title">Top 5</h3>
+      <div id="topList" class="toplist"></div>
+    </div>
+  </div>
+
+  <div
+    id="modalDetail"
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="detailTitle"
+    tabindex="-1"
+    aria-hidden="true"
+  >
+    <div class="modal__backdrop" data-close="detail"></div>
+    <div class="modal__panel modal__panel--wide">
+      <button class="modal__close" data-close="detail" aria-label="Close">x</button>
+      <h3 id="detailTitle" class="sr-only">Recipe details</h3>
+      <div id="detail" class="detail"></div>
+    </div>
+  </div>
+
+  <div id="srAnnounce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

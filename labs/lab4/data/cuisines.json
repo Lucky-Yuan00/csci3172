@@ -1,0 +1,12 @@
+{
+  "cuisines": [
+    { "slug": "lu",    "name": "Shandong (Lu)" },
+    { "slug": "yue",   "name": "Cantonese (Yue)" },
+    { "slug": "min",   "name": "Fujian (Min)" },
+    { "slug": "su",    "name": "Jiangsu (Su)" },
+    { "slug": "zhe",   "name": "Zhejiang (Zhe)" },
+    { "slug": "xiang", "name": "Hunan (Xiang)" },
+    { "slug": "hui",   "name": "Anhui (Hui)" },
+    { "slug": "chuan", "name": "Sichuan (Chuan)" }
+  ]
+}
