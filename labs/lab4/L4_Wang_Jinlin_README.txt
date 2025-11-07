@@ -1,9 +1,9 @@
-# CSCI 3172 — Lab 4
-## Chinese Recipe Finder — Recipe Recommender
+# CSCI 3172 - Lab 4
+## Chinese Recipe Finder - Recipe Recommender
 
 **Student:** Jinlin Wang (B00911276)  
 **Semester:** Fall 2025  
-**Submission:** Lab 4 — Chinese Recipe Finder  
+**Submission:** Lab 4 - Chinese Recipe Finder  
 **Date Created:** 05 Nov 2025
 
 ---
@@ -21,7 +21,7 @@
 ---
 
 ## How to Run (Local)
-**Requirements:** Node.js ≥ 18 and npm
+**Requirements:** Node.js >= 18 and npm
 
 ```bash
 # run these inside labs/lab4
@@ -30,7 +30,7 @@ npm run dev             # start local server via Netlify Dev on http://localhost
 npm test                # run unit/integration tests
 ```
 
-- Front‑end is served from **/frontend**  
+- Front-end is served from **/frontend**  
 - Serverless API endpoints are mounted under **/.netlify/functions/api** (proxied as **/api/*** via `netlify.toml`)
 
 **Build:** No build step is required to run locally for this lab.
@@ -46,7 +46,7 @@ When connecting the **GitHub mirror** to Netlify:
 - **Functions directory:** `labs/lab4/netlify/functions`
 - **Build command:** `npm run build`
 
-> This matches the repository layout and ensures that the static front‑end and Netlify Functions are deployed correctly.
+> This matches the repository layout and ensures that the static front-end and Netlify Functions are deployed correctly.
 
 ---
 
@@ -76,26 +76,26 @@ labs/lab4/
 
 ---
 
-## Features Implemented — Front‑end
-1. **Ingredient search** with optional **cuisine** and **diet** filters, plus “**Top 5**” quick action.  
-2. **Responsive card grid** (12‑column) with images, titles, and short descriptors.  
+## Features Implemented - Front-end
+1. **Ingredient search** with optional **cuisine** and **diet** filters, plus "**Top 5**" quick action.  
+2. **Responsive card grid** (12-column) with images, titles, and short descriptors.  
 3. **Detail panel** for a chosen recipe (title, image, summary, key ingredients).  
-4. **Result count**, **empty‑state messaging**, and **loading indicators**.  
-5. **Accessibility:** labeled inputs, ARIA attributes, visible focus states, keyboard‑friendly controls.
+4. **Result count**, **empty-state messaging**, and **loading indicators**.  
+5. **Accessibility:** labeled inputs, ARIA attributes, visible focus states, keyboard-friendly controls.
 
 ---
 
-## Features Implemented — Back‑end (Serverless API)
-- **GET `/api/health`** → `{ ok: true }` (smoke check)  
-- **GET `/api/cuisines`** → `{ cuisines: [...] }` served from `/data/cuisines.json`  
-- **GET `/api/recipes?q=&cuisine=&diet=&limit=`** → `{ meals: [...], total: N }`  
+## Features Implemented - Back-end (Serverless API)
+- **GET `/api/health`** -> `{ ok: true }` (smoke check)  
+- **GET `/api/cuisines`** -> `{ cuisines: [...] }` served from `/data/cuisines.json`  
+- **GET `/api/recipes?q=&cuisine=&diet=&limit=`** -> `{ meals: [...], total: N }`  
   - Filters by ingredient(s), cuisine, and diet; supports limiting results.  
-  - Returns well‑formed JSON and appropriate **400/500** error codes on invalid input or failures.
+  - Returns well-formed JSON and appropriate **400/500** error codes on invalid input or failures.
 
 ---
 
 ## API & Data
-- **Primary data:** curated JSON focusing on the **“Eight Great Cuisines”** of China (Yue、Lu、Min、Su、Zhe、Xiang、Hui、Chuan).  
+- **Primary data:** curated JSON focusing on the **"Eight Great Cuisines"** of China (Yue, Lu,Min, Su, Zhe, Xiang, Hui, Chuan).  
 - Designed to be **easily extended** to public APIs such as **TheMealDB** or **Edamam** if needed.
 
 ---
@@ -120,7 +120,7 @@ labs/lab4/
 
 ---
 
-## Cross‑Browser Validation
+## Cross-Browser Validation
 Validated on **Chrome**, **Edge**, and **Firefox** (Windows 10).
 
 ---
@@ -133,7 +133,7 @@ Validated on **Chrome**, **Edge**, and **Firefox** (Windows 10).
 
 ## Academic Integrity / Sources
 - Code is original for this lab. General documentation consulted: Netlify Functions and Express.  
-- Data regarding cuisine categories compiled from open sources; any third‑party API references are noted in code comments when applicable.
+- Data regarding cuisine categories compiled from open sources; any third-party API references are noted in code comments when applicable.
 
 ---
 
